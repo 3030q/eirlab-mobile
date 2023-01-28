@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import MainPage from "./components/main-page/MainPage";
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "react-native-screens/native-stack";
+import Login from "./components/login/Login";
+import Search from "./components/search/Search";
+import MainPageSecond from "./components/main-page/MainPageSecond";
+import AnalScreen from "./components/anal_screen/AnalScreen";
+import Diary from "./components/Diary/Diary";
+import DiaryElement from "./components/DiaryElement/DiaryElement";
 
-export default function App() {
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+          <Stack.Navigator initialRouteName="MainPage">
+              <Stack.Screen name="MainPage" component={MainPage} options={{ headerShown: false }}/>
+              <Stack.Screen name="MainPageSecond" component={MainPageSecond} options={{ headerShown: false }}/>
+              <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
+              <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
+              <Stack.Screen name="Anal" component={AnalScreen} options={{ headerShown: false }}/>
+              <Stack.Screen name="Diary" component={Diary} options={{ headerShown: false }}/>
+              <Stack.Screen name="DiaryElement" component={DiaryElement} options={{ headerShown: false }}/>
+          </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
